@@ -24,14 +24,14 @@ install:
 	cp ./load_mono_22.sh /usr/local/bin
 	cp ./detach_usbhid /usr/local/bin
 	cp ./load_mono_22.rules /etc/udev/rules.d
-	/sbin/udevadm control --reload
+	/usr/bin/udevadm control --reload
 	modprobe mono_22
 
 uninstall:
 	rm /usr/local/bin/load_mono_22.sh
 	rm /usr/local/bin/detach_usbhid
 	rm /etc/udev/rules.d/load_mono_22.rules
-	/sbin/udevadm control --reload
+	/usr/bin/udevadm control --reload
 	rm /lib/modules/$(shell uname -r)/kernel/drivers/input/tablet/mono_22.ko
 	sed -i '/mono_22/d' /etc/modules
 	depmod
